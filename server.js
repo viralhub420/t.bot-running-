@@ -1,38 +1,36 @@
+
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const app = express();
 
-// BotFather থেকে পাওয়া আপনার আসল টোকেনটি এখানে বসান
-const token = '8519388709:AAFegkbyQKYRUfUpRinjfAXjrUC8sfM9I7A'; 
+const token = '8519388709:AAFegkbyQKYRUfUpRinjfAXjrUC8sfM9I7A'; // এখানে আপনার বট টোকেনটি দিন
 const bot = new TelegramBot(token, {polling: true});
 
-// ইউজার যখন /start লিখবে তখন এই মেসেজটি যাবে
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
-    const firstName = msg.chat.first_name;
+    
+    // আপনার ছবির ডিরেক্ট লিঙ্ক নিচে বসানো হয়েছে
+    const photoUrl = 'https://i.ibb.co.com/2Y5NYYXj/image.jpg'; 
 
-    const welcomeMessage = `স্বাগতম ${firstName}! 😊\n\nSKBD Reward অ্যাপে কাজ করে প্রতিদিন ইনকাম করুন। আপনার পেমেন্ট সরাসরি বিকাশ বা নগদে নিতে পারবেন।\n\n🚀 কাজ শুরু করতে নিচের বাটনে ক্লিক করুন:`;
+    const captionText = `আসসালামু আলাইকুম ${msg.chat.first_name}! 🎁\n\nSKBD Reward অ্যাপে আপনাকে স্বাগতম! এখানে বিজ্ঞাপন দেখে এবং গেম খেলে প্রতিদিন টাকা আয় করতে পারবেন।\n\n💰 ১০০% ট্রাস্টেড অ্যাপ (বিকাশ ও নগদ পেমেন্ট)।\n\n🚀 কাজ শুরু করতে নিচের 'Open App' বাটনে ক্লিক করুন:`;
 
-    const options = {
+    bot.sendPhoto(chatId, photoUrl, {
+        caption: captionText,
         reply_markup: {
             inline_keyboard: [
                 [
                     { 
-                        text: "📱 Open SKBD App", 
-                        web_app: { url: "https://skbd355.onrender.com" } // আপনার বর্তমান স্ট্যাটিক সাইট লিঙ্ক
+                        text: "📱 Open App", 
+                        web_app: { url: "https://skbd355.onrender.com" } // আপনার মিনি অ্যাপ লিঙ্ক
                     }
                 ],
                 [
-                    { text: "📢 Join Channel", url: "https://t.me/skbd355_official" }
+                    { text: "📢 পেমেন্ট প্রুফ চ্যানেল", url: "https://t.me/skbd355_official" }
                 ]
             ]
         }
-    };
-
-    bot.sendMessage(chatId, welcomeMessage, options);
+    });
 });
 
-// সার্ভারকে সচল রাখার জন্য (Render এর জন্য প্রয়োজন)
-const PORT = process.env.PORT || 3000;
-app.get('/', (req, res) => res.send('SKBD Bot is Running!'));
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get('/', (req, res) => res.send('Bot is Running with Photo!'));
+app.listen(process.env.PORT || 3000);
