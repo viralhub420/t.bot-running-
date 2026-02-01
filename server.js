@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // BotFather থেকে পাওয়া আপনার আসল টোকেনটি এখানে বসান
-const token = 'YOUR_BOT_TOKEN_HERE'; 
+const token = '8519388709:AAFegkbyQKYRUfUpRinjfAXjrUC8sfM9I7A'; 
 const bot = new TelegramBot(token, {polling: true});
 
 // ইউজার যখন /start লিখবে তখন এই মেসেজটি যাবে
