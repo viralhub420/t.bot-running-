@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const app = express();
 
-const token = '8519388709:AAFegkbyQKYRUfUpRinjfAXjrUC8sfM9I7A'; // এখানে আপনার বট টোকেনটি দিন
+const token = '8519388709:AAEhlcVtW9zHHxnf7zsLjYsd8MIrl4Gv0XM'; // এখানে আপনার বট টোকেনটি দিন
 const bot = new TelegramBot(token, {polling: true});
 
 bot.onText(/\/start/, (msg) => {
